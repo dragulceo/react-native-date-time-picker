@@ -13,32 +13,7 @@ var {
   StyleSheet
   } = React;
 
-export default class DateTimePicker extends Component {
-
-  static propTypes = {
-    style: View.propTypes.style,
-    onDone: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
-    initialDate: PropTypes.instanceOf(Date),
-    minDate: PropTypes.instanceOf(Date),
-    maxDate: PropTypes.instanceOf(Date),
-    // 'time' shows a 'time' picker, 'date' shows a date picker
-    mode: PropTypes.oneOf(['time', 'date']),
-    // When both is set, we show a DatePickerIOS in mode 'datetime' on IOS, ignored on Android
-    both: PropTypes.bool,
-    cancelText: PropTypes.string,
-    doneText: PropTypes.string
-  };
-
-  static defaultProps = {
-    style: {},
-    cancelText: 'Cancel',
-    doneText: 'Done',
-    mode: 'date',
-    both: true,
-    onCancel: () => {},
-    minDate: new Date(1900, 1, 1),
-  };
+class DateTimePicker extends Component {
 
   constructor(props) {
     super(props);
@@ -170,6 +145,32 @@ export default class DateTimePicker extends Component {
   };
 }
 
+DateTimePicker.propTypes = {
+  style: View.propTypes.style,
+  onDone: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  initialDate: PropTypes.instanceOf(Date),
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
+  // 'time' shows a 'time' picker, 'date' shows a date picker
+  mode: PropTypes.oneOf(['time', 'date']),
+  // When both is set, we show a DatePickerIOS in mode 'datetime' on IOS, ignored on Android
+  both: PropTypes.bool,
+  cancelText: PropTypes.string,
+  doneText: PropTypes.string
+};
+
+DateTimePicker.defaultProps = {
+  style: {},
+  cancelText: 'Cancel',
+  doneText: 'Done',
+  mode: 'date',
+  both: true,
+  onCancel: () => {},
+  minDate: new Date(1900, 1, 1),
+};
+
+
 const styles = StyleSheet.create({
   touchable: {
     flexDirection: 'row',
@@ -209,3 +210,4 @@ const styles = StyleSheet.create({
     color: '#138BE4'
   },
 });
+export default DateTimePicker;
