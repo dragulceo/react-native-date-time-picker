@@ -10,11 +10,8 @@ var {
   TimePickerAndroid,
   TouchableHighlight,
   Text,
-  Dimensions,
   StyleSheet
   } = React;
-
-const WIN = Dimensions.get('window');
 
 export default class DateTimePicker extends Component {
 
@@ -196,6 +193,7 @@ const styles = StyleSheet.create({
   pickerContainer: {
     padding: 20,
     backgroundColor: 'white',
+    alignItems: 'center',
   },
   btn: {
     flex: 1,
