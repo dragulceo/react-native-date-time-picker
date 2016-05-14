@@ -37,6 +37,7 @@ class DateTimePicker extends Component {
     DatePickerAndroid.open({date: selectedDate, minDate, maxDate})
       .then((result) => {
         if (result.action === DatePickerAndroid.dateSetAction) {
+          initialDate = initialDate || new Date();
           let selectedDate = new Date(
             result.year, result.month, result.day, initialDate.getHours(), initialDate.getMinutes());
           this.setState({selectedDate});
@@ -48,11 +49,12 @@ class DateTimePicker extends Component {
   };
 
   _openAndroidTimePicker = () => {
-    let {onDone, onCancel, initialDate} = this.props;
+    let {onDone, onCancel, initialDate, is24Hour} = this.props;
     let {selectedDate} = this.state;
-    TimePickerAndroid.open({hour: selectedDate.getHours(), minute: selectedDate.getMinutes(), is24Hour: false})
+    TimePickerAndroid.open({hour: selectedDate.getHours(), minute: selectedDate.getMinutes(), is24Hour: is24Hour})
       .then((result) => {
         if (result.action === TimePickerAndroid.timeSetAction) {
+          initialDate = initialDate || new Date();
           let selectedDate = new Date(
             initialDate.getFullYear(), initialDate.getMonth(), initialDate.getDay(), result.hour, result.minute);
           this.setState({selectedDate});
@@ -150,6 +152,7 @@ DateTimePicker.propTypes = {
   onDone: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
   initialDate: PropTypes.instanceOf(Date),
+  is24Hour: PropTypes.bool,
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   // 'time' shows a 'time' picker, 'date' shows a date picker
@@ -166,6 +169,7 @@ DateTimePicker.defaultProps = {
   doneText: 'Done',
   mode: 'date',
   both: true,
+  is24Hour: false,
   onCancel: () => {},
   minDate: new Date(1900, 1, 1),
 };
