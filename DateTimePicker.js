@@ -106,14 +106,14 @@ class DateTimePicker extends Component {
                 <TouchableHighlight style={styles.cancel}
                                     underlayColor={'transparent'}
                                     onPress={this._handlePressCancel}>
-                  <Text style={styles.text}>{cancelText}</Text>
+                  <Text style={[styles.text, this.props.iOSButtonTextStyle]}>{cancelText}</Text>
                 </TouchableHighlight>
               </View>
               <View style={styles.btn}>
                 <TouchableHighlight style={styles.done}
                                     underlayColor={'transparent'}
                                     onPress={this._handlePressDone}>
-                  <Text style={styles.text}>{doneText}</Text>
+                  <Text style={[styles.text, this.props.iOSButtonTextStyle]}>{doneText}</Text>
                 </TouchableHighlight>
               </View>
             </View>
@@ -138,7 +138,7 @@ class DateTimePicker extends Component {
         <TouchableHighlight style={styles.touchable}
                             onPress={this._openDateTimePicker}
                             underlayColor={'transparent'}>
-          <View style={styles.innerContainer}>
+          <View style={[styles.innerContainer, this.props.innerContainerStyle]}>
             {this.props.children}
           </View>
         </TouchableHighlight>
@@ -160,7 +160,9 @@ DateTimePicker.propTypes = {
   // When both is set, we show a DatePickerIOS in mode 'datetime' on IOS, ignored on Android
   both: PropTypes.bool,
   cancelText: PropTypes.string,
-  doneText: PropTypes.string
+  doneText: PropTypes.string,
+  iOSButtonTextStyle: Text.propTypes.style,
+  innerContainerStyle: View.propTypes.style,
 };
 
 DateTimePicker.defaultProps = {
